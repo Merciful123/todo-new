@@ -16,7 +16,7 @@ const TodoList = () => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get(
-          "http://locahost:8000/api/getall-todo"
+          "https://new-todo-0gxb.onrender.com/api/getall-todo"
         );
         setTodos(response?.data);
       } catch (error) {
