@@ -30,7 +30,7 @@ async function connectDatabase() {
 
 connectDatabase()
 
-server.use(express.static(path.resolve(__dirname, "dist")));
+app.use(express.static(path.resolve(__dirname, "dist")));
 
 app.get("/", (req, res) => {
    return res.json({message:"Server is connected"})
