@@ -2,7 +2,9 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
+  "proxy": "https://new-todo-0gxb.onrender.com/",
   "type": "module",
+  
   "scripts": {
     "dev": "vite",
     "build": "vite build",

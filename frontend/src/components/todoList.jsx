@@ -59,7 +59,7 @@ const TodoList = () => {
   // filtering todos
 
   const filteredTodos = priorityFilter
-    ? todos?.filter((todo) => todo?.priority === priorityFilter)
+    ? todos?.length > 0 && todos?.filter((todo) => todo?.priority === priorityFilter)
     : todos;
 
   //delete modal
@@ -69,14 +69,10 @@ const TodoList = () => {
       const response = await axios.delete(
         `https://new-todo-0gxb.onrender.com/api/delete-todo/${deleteId}`
       );
-      // setTodos(todos.filter((todo) => todo._id !== todoId));
       console.log(response.data);
-      // const newData = [...todos]
-      // newData.splice(todoId, 1)
-      // setTodos(newData)
+    
       const newData = todos.filter((todo) => todo._id !== deleteId);
       setTodos(newData);
-      // setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== todoId));
       setAlert("Todo deleted successfully!");
       setTimeout(() => {
         setAlert(null);
@@ -98,6 +94,9 @@ const TodoList = () => {
     setIsOpen(true);
     setDeleteId(id)
   }
+
+  console.log(filteredTodos)
+  console.log(todos)
 
   return (
     <div className="flex flex-col">

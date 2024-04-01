@@ -19,22 +19,9 @@ const app = express();
 
 app.use(express.json()); // to parse req.body
 
+app.use(cors()); // Enable CORS for all routes
 
-// const allowedOrigins = ["http://localhost:5173", ];
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       // Check if the origin is allowed or if it's a request from the same origin
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     methods: ["GET", "POST", "PUT", "DELETE"], // Specify the HTTP methods you want to allow
-//     allowedHeaders: ["Content-Type", "Authorization"], // Specify the allowed request headers
-//   })
-// );
+
 
 // Serve static files
 const __dirname = path.resolve();
@@ -56,10 +43,6 @@ mongoose
     console.error("MongoDB connection error:", error);
   });
 
-// Handle all other routes
-// app.get("*", (req, res) =>
-//   res.sendFile(path.resolve(__dirname, "dist", "index.html"))
-// );
 
 // API routes
 app.use("/api", getAllTodoRoute);
