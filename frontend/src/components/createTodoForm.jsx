@@ -19,7 +19,7 @@ const CreateTodo = () => {
     if (params?.id) {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/get-todo/${params?.id}`
+          `https://new-todo-0gxb.onrender.com/api/get-todo/${params?.id}`
         );
         setTodo(response.data);
       } catch (error) {
@@ -34,7 +34,9 @@ const CreateTodo = () => {
   //  getting all todos
   const fetchTodoAll = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/getall-todo`);
+      const response = await axios.get(
+        `https://new-todo-0gxb.onrender.com/api/getall-todo`
+      );
       setTodo(response.data);
     } catch (error) {
       console.log(error);
@@ -68,7 +70,7 @@ const CreateTodo = () => {
       if (params?.id) {
         // Update existing todo
         await axios.put(
-          `http://localhost:8000/api/update-todo/${params?.id}`,
+          `https://new-todo-0gxb.onrender.com/api/update-todo/${params?.id}`,
           todo
         );
         setAlert("Todo updated successfully!"); // Set alert message
@@ -78,7 +80,10 @@ const CreateTodo = () => {
       } else {
         // Add new todo
 
-        await axios.post("http://localhost:8000/api/create-todo", todo);
+        await axios.post(
+          "https://new-todo-0gxb.onrender.com/api/create-todo",
+          todo
+        );
         setAlert("Todo created successfully!"); // Set alert message
         setTimeout(() => {
           setAlert(null);

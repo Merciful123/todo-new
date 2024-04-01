@@ -16,7 +16,7 @@ const TodoList = () => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/getall-todo"
+          "https://new-todo-0gxb.onrender.com/api/getall-todo"
         );
         setTodos(response?.data);
       } catch (error) {
@@ -68,7 +68,7 @@ const TodoList = () => {
     console.log("todoId");
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/delete-todo/${deleteId}`
+        `https://new-todo-0gxb.onrender.com/delete-todo/${deleteId}`
       );
       // setTodos(todos.filter((todo) => todo._id !== todoId));
       console.log(response.data);

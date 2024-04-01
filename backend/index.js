@@ -16,24 +16,13 @@ const app = express();
 
 app.use(express.json());
 
+
 app.use(
   cors({
     origin: ["https://todoappbest.netlify.app", "http://127.0.0.1:5173"],
-    methods: "GET,POST,PUT,DELETE"
+    methods: "GET,POST,PUT,DELETE",
   })
 );
-async function connectDatabase() {
-
-    try {
-        const uri = process.env.MONGODB_URL;
-        await mongoose.connect(uri);
-        console.log(`Server connected to port ${process.env.PORT}`)
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-connectDatabase()
 
 // Resolve the directory name using import.meta.url
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -41,6 +30,14 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 // Serve static files from the "dist" directory
 app.use(express.static(path.resolve(__dirname, "dist")));
  
+
+ 
+mongoose.connect(process.env.MONGODB_URL).then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
+  });
+});
+
 
 
 app.use("/api", getAllTodoRoute);
@@ -50,6 +47,3 @@ app.use("/api", updateTodoRoute);
 app.use("/api", deleteTodoRoute);
 
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
