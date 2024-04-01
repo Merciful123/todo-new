@@ -16,15 +16,9 @@ const app = express();
 
 app.use(express.json());
 
-
 app.use(
   cors({
-    origin: [
-      "https://todoappbest.netlify.app",
-      "https://main--todoappbest.netlify.app",
-      "http://127.0.0.1:5173",
-    ],
-    methods: "GET,POST,PUT,DELETE",
+    exposedHeaders: ["X-Total-Count"],
   })
 );
 
