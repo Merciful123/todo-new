@@ -36,10 +36,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 // Serve static files from the "dist" directory
 app.use(express.static(path.resolve(__dirname, "dist")));
-
-app.get("/", (req, res) => {
-   return res.json({message:"Server is connected"})
-})
+ 
 
 
 app.use("/api", getAllTodoRoute);
