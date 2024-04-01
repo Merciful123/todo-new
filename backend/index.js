@@ -49,3 +49,6 @@ app.use("/api", updateTodoRoute);
 app.use("/api", deleteTodoRoute);
 
 
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});
