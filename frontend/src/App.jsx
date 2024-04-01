@@ -1,24 +1,10 @@
 import CreateTodo from "./components/createTodoForm";
-import TodoList from "./components/todoList";
 import HomePage from "./pages/homepage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: <HomePage />,
-  //   },
-  //   {
-  //     path: "/add-todo",
-  //     element: <CreateTodo />,
-  //   },
-  //   {
-  //     path: "/edit-todo/:id",
-  //     element: <CreateTodo />,
-  //   },
-  // ]);
+  
 
   return (
     <>
