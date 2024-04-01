@@ -10,6 +10,8 @@ const TodoList = () => {
   const [sortByCategory, setSortByCategory] = useState(false);
   const [alert, setAlert] = useState(null);
   const [priorityFilter, setPriorityFilter] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -18,6 +20,8 @@ const TodoList = () => {
           "https://new-todo-0gxb.onrender.com/api/getall-todo"
         );
         setTodos(response?.data);
+        console.log(todos)
+        console.log(response)
       } catch (error) {
         console.error("Error fetching todos:", error.message);
       }
@@ -59,18 +63,17 @@ const TodoList = () => {
   // filtering todos
 
   const filteredTodos = priorityFilter
-    ? todos?.length > 0 && todos?.filter((todo) => todo?.priority === priorityFilter)
+    ? todos?.filter((todo) => todo?.priority === priorityFilter)
     : todos;
 
   //delete modal
   const handleDelete = async () => {
-    console.log("todoId");
     try {
       const response = await axios.delete(
         `https://new-todo-0gxb.onrender.com/api/delete-todo/${deleteId}`
       );
       console.log(response.data);
-    
+
       const newData = todos.filter((todo) => todo._id !== deleteId);
       setTodos(newData);
       setAlert("Todo deleted successfully!");
@@ -82,21 +85,14 @@ const TodoList = () => {
     }
   };
 
-  // hamdling modal
-  const [isOpen, setIsOpen] = useState(false);
-  const [deleteId, setDeleteId] = useState("")
-
   function closeModal() {
     setIsOpen(false);
   }
 
   function openModal(id) {
     setIsOpen(true);
-    setDeleteId(id)
+    setDeleteId(id);
   }
-
-  console.log(filteredTodos)
-  console.log(todos)
 
   return (
     <div className="flex flex-col">
@@ -148,8 +144,8 @@ const TodoList = () => {
               <option value="high">High</option>
             </select>
           </div>
-          {Array.isArray(filteredTodos) && filteredTodos?.length ? (
-            filteredTodos?.map((todo) => (
+          {filteredTodos?.data?.length > 0 ? (
+            filteredTodos?.data?.map((todo) => (
               <li
                 key={todo._id}
                 className="flex justify-between gap-x-6 py-8 shadow-lg px-4 max-sm:flex max-sm:flex-col border-2 border-black"
@@ -186,7 +182,7 @@ const TodoList = () => {
                   </div>
                 </div>
 
-                <div className=" flex justify-between items-center gap-2 max-sm:mt-4 ">
+                <div className=" flex justify-between items-center gap-4 max-sm:mt-4 ">
                   <Link to={`/edit-todo/${todo?._id}`}>
                     <div className="text-blue-500">
                       <svg

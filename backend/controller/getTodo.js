@@ -4,7 +4,7 @@ import Task from "../models/task.js";
 export const getAllTodo = async (req, res) => {
   try {
     const tasks = await Task.find();
-    res.json({ success: true, data: tasks });
+    res.json(tasks);
   } catch (error) {
     console.error("Error fetching all tasks:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });
