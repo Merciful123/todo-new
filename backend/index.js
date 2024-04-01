@@ -38,7 +38,9 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
   });
 });
 
-
+server.get("*", (req, res) =>
+  res.sendFile(path.resolve("dist", "index.html"))
+);
 
 app.use("/api", getAllTodoRoute);
 app.use("/api", getTodoRoute);
