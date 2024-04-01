@@ -23,7 +23,7 @@ const CreateTodo = () => {
         const response = await axios.get(
           `https://new-todo-0gxb.onrender.com/api/get-todo/${params?.id}`
         );
-        setTodo(response.data);
+        setTodo(response?.data);
       } catch (error) {
         console.log(error);
       }

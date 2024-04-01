@@ -21,7 +21,7 @@ export const getTodo = async (req, res) => {
       return res.status(404).json({ success: false, error: "Task not found" });
     }
 
-    res.json({ success: true, data: task });
+    res.json(task);
   } catch (error) {
     console.error("Error fetching task by ID:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });

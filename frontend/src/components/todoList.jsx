@@ -144,8 +144,8 @@ const TodoList = () => {
               <option value="high">High</option>
             </select>
           </div>
-          {filteredTodos?.data?.length > 0 ? (
-            filteredTodos?.data?.map((todo) => (
+          {filteredTodos?.length > 0 ? (
+            filteredTodos?.map((todo) => (
               <li
                 key={todo._id}
                 className="flex justify-between gap-x-6 py-8 shadow-lg px-4 max-sm:flex max-sm:flex-col border-2 border-black"
