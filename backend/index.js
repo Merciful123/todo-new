@@ -46,9 +46,9 @@ mongoose
   });
 
 // Handle all other routes
-app.get("*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "dist", "index.html"))
-);
+// app.get("*", (req, res) =>
+//   res.sendFile(path.resolve(__dirname, "dist", "index.html"))
+// );
 
 // API routes
 app.use("/api", getAllTodoRoute);
