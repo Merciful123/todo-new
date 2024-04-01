@@ -1,35 +1,29 @@
 import Task from "../models/task.js";
 
-
 // Get all tasks
 export const getAllTodo = async (req, res) => {
   try {
     const tasks = await Task.find();
-    res.json(tasks);
+    res.json({ success: true, data: tasks });
   } catch (error) {
-      console.log("all")
-    res.status(500).json({ message: error.message });
+    console.error("Error fetching all tasks:", error);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
   }
 };
 
 // Get a specific task by ID
 export const getTodo = async (req, res) => {
   try {
-    const taskId = req.params.id; // Get the task ID from the request parameters
-    const task = await Task.findById(taskId); // Find the task by its ID in the database
+    const taskId = req.params.id;
+    const task = await Task.findById(taskId);
 
-    // Check if the task exists
     if (!task) {
-      return res.status(404).json({ message: "Task not found" });
+      return res.status(404).json({ success: false, error: "Task not found" });
     }
 
-    // If the task exists, send it as a JSON response
-    res.json(task);
+    res.json({ success: true, data: task });
   } catch (error) {
-    // Handle any errors that occur during the database query or response sending
-    res.status(500).json({ message: error.message });
-    console.log("single")
+    console.error("Error fetching task by ID:", error);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
   }
 };
-
-

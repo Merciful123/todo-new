@@ -16,7 +16,7 @@ const TodoList = () => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get(
-          "https://new-todo-0gxb.onrender.com/api/getall-todo"
+          "http://locahost:8000/api/getall-todo"
         );
         setTodos(response?.data);
       } catch (error) {
@@ -150,7 +150,7 @@ const TodoList = () => {
               <option value="high">High</option>
             </select>
           </div>
-          {filteredTodos?.length > 0 ? (
+          {Array.isArray(filteredTodos) && filteredTodos?.length ? (
             filteredTodos?.map((todo) => (
               <li
                 key={todo._id}
