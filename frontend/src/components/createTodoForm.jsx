@@ -73,7 +73,7 @@ const CreateTodo = () => {
           `https://new-todo-0gxb.onrender.com/api/update-todo/${params?.id}`,
           todo
         );
-        setAlert("Todo updated successfully!"); // Set alert message
+       setAlert("Todo updated successfully!"); // Set alert message
         setTimeout(() => {
           setAlert(null);
         }, 1000);

@@ -68,7 +68,7 @@ const TodoList = () => {
     console.log("todoId");
     try {
       const response = await axios.delete(
-        `https://new-todo-0gxb.onrender.com/delete-todo/${deleteId}`
+        `https://new-todo-0gxb.onrender.com/api/delete-todo/${deleteId}`
       );
       // setTodos(todos.filter((todo) => todo._id !== todoId));
       console.log(response.data);
