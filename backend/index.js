@@ -16,14 +16,25 @@ const MONGODB_URL = process.env.MONGODB_URL;
 
 const app = express();
 
-// // Enable CORS
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: "*",
-//   })
-// );
+
+app.use(express.json()); // to parse req.body
+
+
+const allowedOrigins = ["http://localhost:5173", ];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Check if the origin is allowed or if it's a request from the same origin
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"], // Specify the HTTP methods you want to allow
+    allowedHeaders: ["Content-Type", "Authorization"], // Specify the allowed request headers
+  })
+);
 
 // Serve static files
 const __dirname = path.resolve();
